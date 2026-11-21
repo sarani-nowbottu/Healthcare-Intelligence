@@ -15,20 +15,42 @@ const client = axios.create({
   }
 });
 
+const RETRY_DELAYS_MS = [1000, 3000, 7000];
+
+function isTransientUpstreamError(error) {
+  const status = error.response?.status;
+  return [502, 503, 504].includes(status) ||
+    ['ECONNABORTED', 'ECONNREFUSED', 'ECONNRESET', 'EAI_AGAIN', 'ETIMEDOUT'].includes(error.code);
+}
+
+async function getWithRetry(url) {
+  for (let attempt = 0; ; attempt += 1) {
+    try {
+      return await client.get(url);
+    } catch (error) {
+      const delay = RETRY_DELAYS_MS[attempt];
+      if (delay === undefined || !isTransientUpstreamError(error)) throw error;
+
+      console.warn(`Flask service GET ${url} failed transiently (${error.response?.status || error.code}); retrying in ${delay}ms.`);
+      await new Promise(resolve => setTimeout(resolve, delay));
+    }
+  }
+}
+
 module.exports = {
   checkHealth: async () => {
-    const res = await client.get('/health');
+    const res = await getWithRetry('/health');
     return res.data;
   },
 
   getDistricts: async () => {
-    const res = await client.get('/api/ml/districts');
+    const res = await getWithRetry('/api/ml/districts');
     return res.data;
   },
 
   getDistrictProfile: async (districtName, stateName) => {
     const url = `/api/ml/district/${encodeURIComponent(districtName)}${stateName ? `?state=${encodeURIComponent(stateName)}` : ''}`;
-    const res = await client.get(url);
+    const res = await getWithRetry(url);
     return res.data;
   },
 
@@ -38,22 +60,22 @@ module.exports = {
   },
 
   getModelPerformance: async () => {
-    const res = await client.get('/api/ml/model-performance');
+    const res = await getWithRetry('/api/ml/model-performance');
     return res.data;
   },
 
   getFeatureImportance: async () => {
-    const res = await client.get('/api/ml/feature-importance');
+    const res = await getWithRetry('/api/ml/feature-importance');
     return res.data;
   },
 
   getAnalyticsOverview: async () => {
-    const res = await client.get('/api/analytics/overview');
+    const res = await getWithRetry('/api/analytics/overview');
     return res.data;
   },
 
   getRegionalData: async () => {
-    const res = await client.get('/api/analytics/regions');
+    const res = await getWithRetry('/api/analytics/regions');
     return res.data;
   },
 
@@ -68,7 +90,7 @@ module.exports = {
   },
 
   listPolicies: async () => {
-    const res = await client.get('/api/policies');
+    const res = await getWithRetry('/api/policies');
     return res.data;
   },
 
