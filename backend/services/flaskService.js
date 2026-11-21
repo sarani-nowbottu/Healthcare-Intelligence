@@ -15,7 +15,8 @@ const client = axios.create({
   }
 });
 
-const RETRY_DELAYS_MS = [1000, 3000, 7000];
+// Render free instances can take about 50 seconds to wake after being idle.
+const RETRY_DELAYS_MS = [1000, 3000, 7000, 15000, 25000];
 
 function isTransientUpstreamError(error) {
   const status = error.response?.status;
