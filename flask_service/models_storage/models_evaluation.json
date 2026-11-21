@@ -1,0 +1,1898 @@
+{
+  "best_regression_model": "Gradient Boosting",
+  "best_classification_model": "K-Nearest Neighbors",
+  "dataset_summary": {
+    "total_districts": 707,
+    "features_count": 15,
+    "target_variable": "institutional_births",
+    "train_samples": 565,
+    "test_samples": 142,
+    "target_mean": 88.59,
+    "target_std": 12.4,
+    "target_median": 92.2
+  },
+  "regression_metrics": {
+    "Decision Tree": {
+      "MAE": 5.486,
+      "MSE": 72.388,
+      "RMSE": 8.508,
+      "R2": 0.679
+    },
+    "Random Forest": {
+      "MAE": 5.192,
+      "MSE": 69.187,
+      "RMSE": 8.318,
+      "R2": 0.6932
+    },
+    "K-Nearest Neighbors": {
+      "MAE": 5.207,
+      "MSE": 74.59,
+      "RMSE": 8.637,
+      "R2": 0.6692
+    },
+    "Gradient Boosting": {
+      "MAE": 5.0,
+      "MSE": 60.299,
+      "RMSE": 7.765,
+      "R2": 0.7326
+    }
+  },
+  "classification_metrics": {
+    "Decision Tree": {
+      "Accuracy": 0.6901,
+      "Precision": 0.6891,
+      "Recall": 0.6901,
+      "F1_Score": 0.6889,
+      "ConfusionMatrix": [
+        [
+          9,
+          8,
+          0
+        ],
+        [
+          4,
+          20,
+          17
+        ],
+        [
+          1,
+          14,
+          69
+        ]
+      ],
+      "Labels": [
+        "Low",
+        "Medium",
+        "High"
+      ]
+    },
+    "Random Forest": {
+      "Accuracy": 0.7183,
+      "Precision": 0.7203,
+      "Recall": 0.7183,
+      "F1_Score": 0.7147,
+      "ConfusionMatrix": [
+        [
+          6,
+          11,
+          0
+        ],
+        [
+          4,
+          24,
+          13
+        ],
+        [
+          0,
+          12,
+          72
+        ]
+      ],
+      "Labels": [
+        "Low",
+        "Medium",
+        "High"
+      ]
+    },
+    "K-Nearest Neighbors": {
+      "Accuracy": 0.7254,
+      "Precision": 0.7213,
+      "Recall": 0.7254,
+      "F1_Score": 0.722,
+      "ConfusionMatrix": [
+        [
+          8,
+          8,
+          1
+        ],
+        [
+          4,
+          23,
+          14
+        ],
+        [
+          1,
+          11,
+          72
+        ]
+      ],
+      "Labels": [
+        "Low",
+        "Medium",
+        "High"
+      ]
+    },
+    "Gradient Boosting": {
+      "Accuracy": 0.6901,
+      "Precision": 0.6896,
+      "Recall": 0.6901,
+      "F1_Score": 0.6898,
+      "ConfusionMatrix": [
+        [
+          10,
+          7,
+          0
+        ],
+        [
+          7,
+          19,
+          15
+        ],
+        [
+          1,
+          14,
+          69
+        ]
+      ],
+      "Labels": [
+        "Low",
+        "Medium",
+        "High"
+      ]
+    }
+  },
+  "feature_importance": [
+    {
+      "feature_key": "birth_registration",
+      "feature_name": "Birth Registration with Civil Authority (%)",
+      "category": "Institutional Governance",
+      "gradient_boosting_importance": 0.2732,
+      "random_forest_importance": 0.2874,
+      "importance_score": 0.2803
+    },
+    {
+      "feature_key": "anc_4_visits",
+      "feature_name": "At Least 4 ANC Visits (%)",
+      "category": "Maternal Healthcare",
+      "gradient_boosting_importance": 0.1244,
+      "random_forest_importance": 0.109,
+      "importance_score": 0.1167
+    },
+    {
+      "feature_key": "clean_fuel",
+      "feature_name": "Clean Fuel Usage for Cooking (%)",
+      "category": "Infrastructure & Living Standard",
+      "gradient_boosting_importance": 0.0844,
+      "random_forest_importance": 0.1051,
+      "importance_score": 0.0948
+    },
+    {
+      "feature_key": "women_schooling_10yrs",
+      "feature_name": "Women with 10+ Years Schooling (%)",
+      "category": "Socioeconomic Profile",
+      "gradient_boosting_importance": 0.0886,
+      "random_forest_importance": 0.0662,
+      "importance_score": 0.0774
+    },
+    {
+      "feature_key": "women_literate",
+      "feature_name": "Women Literacy Rate (%)",
+      "category": "Socioeconomic Profile",
+      "gradient_boosting_importance": 0.0635,
+      "random_forest_importance": 0.0737,
+      "importance_score": 0.0686
+    },
+    {
+      "feature_key": "sanitation",
+      "feature_name": "Improved Sanitation Facility Access (%)",
+      "category": "Infrastructure & Living Standard",
+      "gradient_boosting_importance": 0.0599,
+      "random_forest_importance": 0.0614,
+      "importance_score": 0.0606
+    },
+    {
+      "feature_key": "anc_first_trimester",
+      "feature_name": "Antenatal Checkup in 1st Trimester (%)",
+      "category": "Maternal Healthcare",
+      "gradient_boosting_importance": 0.0601,
+      "random_forest_importance": 0.0527,
+      "importance_score": 0.0564
+    },
+    {
+      "feature_key": "drinking_water",
+      "feature_name": "Improved Drinking Water Source (%)",
+      "category": "Infrastructure & Living Standard",
+      "gradient_boosting_importance": 0.0587,
+      "random_forest_importance": 0.0444,
+      "importance_score": 0.0516
+    },
+    {
+      "feature_key": "mcp_card",
+      "feature_name": "Mother & Child Protection Card Received (%)",
+      "category": "Maternal Healthcare",
+      "gradient_boosting_importance": 0.0403,
+      "random_forest_importance": 0.047,
+      "importance_score": 0.0436
+    },
+    {
+      "feature_key": "electricity",
+      "feature_name": "Household Electricity Access (%)",
+      "category": "Infrastructure & Living Standard",
+      "gradient_boosting_importance": 0.0369,
+      "random_forest_importance": 0.0425,
+      "importance_score": 0.0397
+    },
+    {
+      "feature_key": "tetanus_protected",
+      "feature_name": "Neonatal Tetanus Protection (%)",
+      "category": "Maternal Healthcare",
+      "gradient_boosting_importance": 0.0387,
+      "random_forest_importance": 0.0294,
+      "importance_score": 0.034
+    },
+    {
+      "feature_key": "health_insurance",
+      "feature_name": "Health Insurance / Financing Coverage (%)",
+      "category": "Financial Protection",
+      "gradient_boosting_importance": 0.035,
+      "random_forest_importance": 0.0292,
+      "importance_score": 0.0321
+    },
+    {
+      "feature_key": "ifa_100_days",
+      "feature_name": "IFA Consumption for 100+ Days (%)",
+      "category": "Maternal Healthcare",
+      "gradient_boosting_importance": 0.0103,
+      "random_forest_importance": 0.025,
+      "importance_score": 0.0176
+    },
+    {
+      "feature_key": "immunization_full",
+      "feature_name": "Full Child Immunization (12-23 months) (%)",
+      "category": "Child Health",
+      "gradient_boosting_importance": 0.0115,
+      "random_forest_importance": 0.0162,
+      "importance_score": 0.0138
+    },
+    {
+      "feature_key": "early_marriage",
+      "feature_name": "Underage Marriage (Age 20-24 married <18) (%)",
+      "category": "Socioeconomic Profile",
+      "gradient_boosting_importance": 0.0145,
+      "random_forest_importance": 0.0108,
+      "importance_score": 0.0126
+    }
+  ],
+  "sample_actual_vs_predicted": [
+    {
+      "district": "Kapurthala",
+      "state": "Punjab",
+      "actual": 95.0,
+      "predicted": 94.1,
+      "residual": 0.9
+    },
+    {
+      "district": "Jehanabad",
+      "state": "Bihar",
+      "actual": 89.1,
+      "predicted": 76.12,
+      "residual": 12.98
+    },
+    {
+      "district": "Darbhanga",
+      "state": "Bihar",
+      "actual": 69.9,
+      "predicted": 78.19,
+      "residual": -8.29
+    },
+    {
+      "district": "Badgam",
+      "state": "Jammu & Kashmir",
+      "actual": 96.5,
+      "predicted": 96.12,
+      "residual": 0.38
+    },
+    {
+      "district": "Indore",
+      "state": "Madhya Pradesh",
+      "actual": 96.5,
+      "predicted": 96.62,
+      "residual": -0.12
+    },
+    {
+      "district": "Mandsaur",
+      "state": "Madhya Pradesh",
+      "actual": 99.4,
+      "predicted": 90.47,
+      "residual": 8.93
+    },
+    {
+      "district": "Ranchi",
+      "state": "Jharkhand",
+      "actual": 87.3,
+      "predicted": 82.95,
+      "residual": 4.35
+    },
+    {
+      "district": "Khargone (West Nimar)",
+      "state": "Madhya Pradesh",
+      "actual": 92.8,
+      "predicted": 91.72,
+      "residual": 1.08
+    },
+    {
+      "district": "Ribhoi",
+      "state": "Meghalaya",
+      "actual": 56.9,
+      "predicted": 74.23,
+      "residual": -17.33
+    },
+    {
+      "district": "Jashpur",
+      "state": "Chhattisgarh",
+      "actual": 85.6,
+      "predicted": 88.42,
+      "residual": -2.82
+    },
+    {
+      "district": "Mahisagar",
+      "state": "Gujarat",
+      "actual": 93.0,
+      "predicted": 90.25,
+      "residual": 2.75
+    },
+    {
+      "district": "Rajkot",
+      "state": "Gujarat",
+      "actual": 99.3,
+      "predicted": 97.62,
+      "residual": 1.68
+    },
+    {
+      "district": "Dimapur",
+      "state": "Nagaland",
+      "actual": 73.7,
+      "predicted": 79.74,
+      "residual": -6.04
+    },
+    {
+      "district": "Tumkur",
+      "state": "Karnataka",
+      "actual": 100.0,
+      "predicted": 99.05,
+      "residual": 0.95
+    },
+    {
+      "district": "Dhanbad",
+      "state": "Jharkhand",
+      "actual": 78.8,
+      "predicted": 84.93,
+      "residual": -6.13
+    },
+    {
+      "district": "Gariyaband",
+      "state": "Chhattisgarh",
+      "actual": 87.6,
+      "predicted": 84.8,
+      "residual": 2.8
+    },
+    {
+      "district": "Surguja",
+      "state": "Chhattisgarh",
+      "actual": 85.3,
+      "predicted": 87.97,
+      "residual": -2.67
+    },
+    {
+      "district": "Peddapalli",
+      "state": "Telangana",
+      "actual": 96.5,
+      "predicted": 93.86,
+      "residual": 2.64
+    },
+    {
+      "district": "Kinnaur",
+      "state": "Himachal Pradesh",
+      "actual": 82.7,
+      "predicted": 97.84,
+      "residual": -15.14
+    },
+    {
+      "district": "Sukma",
+      "state": "Chhattisgarh",
+      "actual": 81.2,
+      "predicted": 88.7,
+      "residual": -7.5
+    },
+    {
+      "district": "Kamrup Metropolitan",
+      "state": "Assam",
+      "actual": 89.1,
+      "predicted": 95.47,
+      "residual": -6.37
+    },
+    {
+      "district": "Varanasi",
+      "state": "Uttar Pradesh",
+      "actual": 95.2,
+      "predicted": 93.21,
+      "residual": 1.99
+    },
+    {
+      "district": "Baghpat",
+      "state": "Uttar Pradesh",
+      "actual": 80.9,
+      "predicted": 78.64,
+      "residual": 2.26
+    },
+    {
+      "district": "Chandrapur",
+      "state": "Maharashtra",
+      "actual": 99.6,
+      "predicted": 98.56,
+      "residual": 1.04
+    },
+    {
+      "district": "Rohtas",
+      "state": "Bihar",
+      "actual": 89.1,
+      "predicted": 84.92,
+      "residual": 4.18
+    },
+    {
+      "district": "Udhampur",
+      "state": "Jammu & Kashmir",
+      "actual": 87.2,
+      "predicted": 88.19,
+      "residual": -0.99
+    },
+    {
+      "district": "Kohima",
+      "state": "Nagaland",
+      "actual": 66.9,
+      "predicted": 65.25,
+      "residual": 1.65
+    },
+    {
+      "district": "Gaya",
+      "state": "Bihar",
+      "actual": 76.6,
+      "predicted": 81.58,
+      "residual": -4.98
+    },
+    {
+      "district": "Belgaum",
+      "state": "Karnataka",
+      "actual": 97.5,
+      "predicted": 93.05,
+      "residual": 4.45
+    },
+    {
+      "district": "Baloda Bazar",
+      "state": "Chhattisgarh",
+      "actual": 78.1,
+      "predicted": 86.07,
+      "residual": -7.97
+    }
+  ],
+  "all_actual_vs_predicted": {
+    "Decision Tree": [
+      {
+        "district": "Kapurthala",
+        "state": "Punjab",
+        "actual": 95.0,
+        "predicted": 95.88,
+        "residual": -0.88
+      },
+      {
+        "district": "Jehanabad",
+        "state": "Bihar",
+        "actual": 89.1,
+        "predicted": 79.31,
+        "residual": 9.79
+      },
+      {
+        "district": "Darbhanga",
+        "state": "Bihar",
+        "actual": 69.9,
+        "predicted": 87.93,
+        "residual": -18.03
+      },
+      {
+        "district": "Badgam",
+        "state": "Jammu & Kashmir",
+        "actual": 96.5,
+        "predicted": 95.88,
+        "residual": 0.62
+      },
+      {
+        "district": "Indore",
+        "state": "Madhya Pradesh",
+        "actual": 96.5,
+        "predicted": 95.88,
+        "residual": 0.62
+      },
+      {
+        "district": "Mandsaur",
+        "state": "Madhya Pradesh",
+        "actual": 99.4,
+        "predicted": 87.06,
+        "residual": 12.34
+      },
+      {
+        "district": "Ranchi",
+        "state": "Jharkhand",
+        "actual": 87.3,
+        "predicted": 84.63,
+        "residual": 2.67
+      },
+      {
+        "district": "Khargone (West Nimar)",
+        "state": "Madhya Pradesh",
+        "actual": 92.8,
+        "predicted": 95.88,
+        "residual": -3.08
+      },
+      {
+        "district": "Ribhoi",
+        "state": "Meghalaya",
+        "actual": 56.9,
+        "predicted": 81.29,
+        "residual": -24.39
+      },
+      {
+        "district": "Jashpur",
+        "state": "Chhattisgarh",
+        "actual": 85.6,
+        "predicted": 81.29,
+        "residual": 4.31
+      },
+      {
+        "district": "Mahisagar",
+        "state": "Gujarat",
+        "actual": 93.0,
+        "predicted": 88.79,
+        "residual": 4.21
+      },
+      {
+        "district": "Rajkot",
+        "state": "Gujarat",
+        "actual": 99.3,
+        "predicted": 95.88,
+        "residual": 3.42
+      },
+      {
+        "district": "Dimapur",
+        "state": "Nagaland",
+        "actual": 73.7,
+        "predicted": 69.78,
+        "residual": 3.92
+      },
+      {
+        "district": "Tumkur",
+        "state": "Karnataka",
+        "actual": 100.0,
+        "predicted": 95.88,
+        "residual": 4.12
+      },
+      {
+        "district": "Dhanbad",
+        "state": "Jharkhand",
+        "actual": 78.8,
+        "predicted": 84.63,
+        "residual": -5.83
+      },
+      {
+        "district": "Gariyaband",
+        "state": "Chhattisgarh",
+        "actual": 87.6,
+        "predicted": 81.29,
+        "residual": 6.31
+      },
+      {
+        "district": "Surguja",
+        "state": "Chhattisgarh",
+        "actual": 85.3,
+        "predicted": 94.11,
+        "residual": -8.81
+      },
+      {
+        "district": "Peddapalli",
+        "state": "Telangana",
+        "actual": 96.5,
+        "predicted": 97.57,
+        "residual": -1.07
+      },
+      {
+        "district": "Kinnaur",
+        "state": "Himachal Pradesh",
+        "actual": 82.7,
+        "predicted": 95.88,
+        "residual": -13.18
+      },
+      {
+        "district": "Sukma",
+        "state": "Chhattisgarh",
+        "actual": 81.2,
+        "predicted": 68.94,
+        "residual": 12.26
+      },
+      {
+        "district": "Kamrup Metropolitan",
+        "state": "Assam",
+        "actual": 89.1,
+        "predicted": 95.88,
+        "residual": -6.78
+      },
+      {
+        "district": "Varanasi",
+        "state": "Uttar Pradesh",
+        "actual": 95.2,
+        "predicted": 95.88,
+        "residual": -0.68
+      },
+      {
+        "district": "Baghpat",
+        "state": "Uttar Pradesh",
+        "actual": 80.9,
+        "predicted": 84.63,
+        "residual": -3.73
+      },
+      {
+        "district": "Chandrapur",
+        "state": "Maharashtra",
+        "actual": 99.6,
+        "predicted": 95.88,
+        "residual": 3.72
+      },
+      {
+        "district": "Rohtas",
+        "state": "Bihar",
+        "actual": 89.1,
+        "predicted": 84.63,
+        "residual": 4.47
+      },
+      {
+        "district": "Udhampur",
+        "state": "Jammu & Kashmir",
+        "actual": 87.2,
+        "predicted": 88.79,
+        "residual": -1.59
+      },
+      {
+        "district": "Kohima",
+        "state": "Nagaland",
+        "actual": 66.9,
+        "predicted": 69.78,
+        "residual": -2.88
+      },
+      {
+        "district": "Gaya",
+        "state": "Bihar",
+        "actual": 76.6,
+        "predicted": 79.31,
+        "residual": -2.71
+      },
+      {
+        "district": "Belgaum",
+        "state": "Karnataka",
+        "actual": 97.5,
+        "predicted": 95.88,
+        "residual": 1.62
+      },
+      {
+        "district": "Baloda Bazar",
+        "state": "Chhattisgarh",
+        "actual": 78.1,
+        "predicted": 81.29,
+        "residual": -3.19
+      },
+      {
+        "district": "Sivasagar",
+        "state": "Assam",
+        "actual": 95.3,
+        "predicted": 94.11,
+        "residual": 1.19
+      },
+      {
+        "district": "Thiruvallur",
+        "state": "Tamil Nadu",
+        "actual": 100.0,
+        "predicted": 98.96,
+        "residual": 1.04
+      },
+      {
+        "district": "Salem",
+        "state": "Tamil Nadu",
+        "actual": 100.0,
+        "predicted": 99.74,
+        "residual": 0.26
+      },
+      {
+        "district": "Kota",
+        "state": "Rajasthan",
+        "actual": 97.9,
+        "predicted": 95.88,
+        "residual": 2.02
+      },
+      {
+        "district": "Bundi",
+        "state": "Rajasthan",
+        "actual": 95.3,
+        "predicted": 95.22,
+        "residual": 0.08
+      },
+      {
+        "district": "Buldana",
+        "state": "Maharashtra",
+        "actual": 93.9,
+        "predicted": 95.88,
+        "residual": -1.98
+      },
+      {
+        "district": "Shajapur",
+        "state": "Madhya Pradesh",
+        "actual": 98.1,
+        "predicted": 87.06,
+        "residual": 11.04
+      },
+      {
+        "district": "Chamba",
+        "state": "Himachal Pradesh",
+        "actual": 72.0,
+        "predicted": 94.11,
+        "residual": -22.11
+      },
+      {
+        "district": "Kushinagar",
+        "state": "Uttar Pradesh",
+        "actual": 89.4,
+        "predicted": 87.93,
+        "residual": 1.47
+      },
+      {
+        "district": "Kaithal",
+        "state": "Haryana",
+        "actual": 98.2,
+        "predicted": 94.11,
+        "residual": 4.09
+      },
+      {
+        "district": "Bhiwani",
+        "state": "Haryana",
+        "actual": 97.7,
+        "predicted": 88.79,
+        "residual": 8.91
+      },
+      {
+        "district": "Thanjavur",
+        "state": "Tamil Nadu",
+        "actual": 100.0,
+        "predicted": 98.05,
+        "residual": 1.95
+      },
+      {
+        "district": "Perambalur",
+        "state": "Tamil Nadu",
+        "actual": 100.0,
+        "predicted": 98.05,
+        "residual": 1.95
+      },
+      {
+        "district": "Nandurbar",
+        "state": "Maharashtra",
+        "actual": 76.3,
+        "predicted": 87.93,
+        "residual": -11.63
+      },
+      {
+        "district": "Sirsa",
+        "state": "Haryana",
+        "actual": 99.3,
+        "predicted": 94.11,
+        "residual": 5.19
+      },
+      {
+        "district": "Hoshangabad",
+        "state": "Madhya Pradesh",
+        "actual": 91.8,
+        "predicted": 87.93,
+        "residual": 3.87
+      },
+      {
+        "district": "Jalpaiguri",
+        "state": "West Bengal",
+        "actual": 95.8,
+        "predicted": 94.11,
+        "residual": 1.69
+      },
+      {
+        "district": "Simdega",
+        "state": "Jharkhand",
+        "actual": 75.7,
+        "predicted": 97.92,
+        "residual": -22.22
+      },
+      {
+        "district": "Karur",
+        "state": "Tamil Nadu",
+        "actual": 100.0,
+        "predicted": 95.88,
+        "residual": 4.12
+      },
+      {
+        "district": "Sri Potti Sriramulu Nellore",
+        "state": "Andhra Pradesh",
+        "actual": 97.0,
+        "predicted": 97.57,
+        "residual": -0.57
+      }
+    ],
+    "Random Forest": [
+      {
+        "district": "Kapurthala",
+        "state": "Punjab",
+        "actual": 95.0,
+        "predicted": 94.09,
+        "residual": 0.91
+      },
+      {
+        "district": "Jehanabad",
+        "state": "Bihar",
+        "actual": 89.1,
+        "predicted": 78.0,
+        "residual": 11.1
+      },
+      {
+        "district": "Darbhanga",
+        "state": "Bihar",
+        "actual": 69.9,
+        "predicted": 80.03,
+        "residual": -10.13
+      },
+      {
+        "district": "Badgam",
+        "state": "Jammu & Kashmir",
+        "actual": 96.5,
+        "predicted": 95.85,
+        "residual": 0.65
+      },
+      {
+        "district": "Indore",
+        "state": "Madhya Pradesh",
+        "actual": 96.5,
+        "predicted": 96.48,
+        "residual": 0.02
+      },
+      {
+        "district": "Mandsaur",
+        "state": "Madhya Pradesh",
+        "actual": 99.4,
+        "predicted": 90.24,
+        "residual": 9.16
+      },
+      {
+        "district": "Ranchi",
+        "state": "Jharkhand",
+        "actual": 87.3,
+        "predicted": 83.23,
+        "residual": 4.07
+      },
+      {
+        "district": "Khargone (West Nimar)",
+        "state": "Madhya Pradesh",
+        "actual": 92.8,
+        "predicted": 92.65,
+        "residual": 0.15
+      },
+      {
+        "district": "Ribhoi",
+        "state": "Meghalaya",
+        "actual": 56.9,
+        "predicted": 79.46,
+        "residual": -22.56
+      },
+      {
+        "district": "Jashpur",
+        "state": "Chhattisgarh",
+        "actual": 85.6,
+        "predicted": 85.14,
+        "residual": 0.46
+      },
+      {
+        "district": "Mahisagar",
+        "state": "Gujarat",
+        "actual": 93.0,
+        "predicted": 90.87,
+        "residual": 2.13
+      },
+      {
+        "district": "Rajkot",
+        "state": "Gujarat",
+        "actual": 99.3,
+        "predicted": 97.0,
+        "residual": 2.3
+      },
+      {
+        "district": "Dimapur",
+        "state": "Nagaland",
+        "actual": 73.7,
+        "predicted": 75.31,
+        "residual": -1.61
+      },
+      {
+        "district": "Tumkur",
+        "state": "Karnataka",
+        "actual": 100.0,
+        "predicted": 98.13,
+        "residual": 1.87
+      },
+      {
+        "district": "Dhanbad",
+        "state": "Jharkhand",
+        "actual": 78.8,
+        "predicted": 83.12,
+        "residual": -4.32
+      },
+      {
+        "district": "Gariyaband",
+        "state": "Chhattisgarh",
+        "actual": 87.6,
+        "predicted": 83.93,
+        "residual": 3.67
+      },
+      {
+        "district": "Surguja",
+        "state": "Chhattisgarh",
+        "actual": 85.3,
+        "predicted": 89.98,
+        "residual": -4.68
+      },
+      {
+        "district": "Peddapalli",
+        "state": "Telangana",
+        "actual": 96.5,
+        "predicted": 95.94,
+        "residual": 0.56
+      },
+      {
+        "district": "Kinnaur",
+        "state": "Himachal Pradesh",
+        "actual": 82.7,
+        "predicted": 97.27,
+        "residual": -14.57
+      },
+      {
+        "district": "Sukma",
+        "state": "Chhattisgarh",
+        "actual": 81.2,
+        "predicted": 85.95,
+        "residual": -4.75
+      },
+      {
+        "district": "Kamrup Metropolitan",
+        "state": "Assam",
+        "actual": 89.1,
+        "predicted": 96.31,
+        "residual": -7.21
+      },
+      {
+        "district": "Varanasi",
+        "state": "Uttar Pradesh",
+        "actual": 95.2,
+        "predicted": 93.28,
+        "residual": 1.92
+      },
+      {
+        "district": "Baghpat",
+        "state": "Uttar Pradesh",
+        "actual": 80.9,
+        "predicted": 76.01,
+        "residual": 4.89
+      },
+      {
+        "district": "Chandrapur",
+        "state": "Maharashtra",
+        "actual": 99.6,
+        "predicted": 97.52,
+        "residual": 2.08
+      },
+      {
+        "district": "Rohtas",
+        "state": "Bihar",
+        "actual": 89.1,
+        "predicted": 81.74,
+        "residual": 7.36
+      },
+      {
+        "district": "Udhampur",
+        "state": "Jammu & Kashmir",
+        "actual": 87.2,
+        "predicted": 91.16,
+        "residual": -3.96
+      },
+      {
+        "district": "Kohima",
+        "state": "Nagaland",
+        "actual": 66.9,
+        "predicted": 66.94,
+        "residual": -0.04
+      },
+      {
+        "district": "Gaya",
+        "state": "Bihar",
+        "actual": 76.6,
+        "predicted": 81.0,
+        "residual": -4.4
+      },
+      {
+        "district": "Belgaum",
+        "state": "Karnataka",
+        "actual": 97.5,
+        "predicted": 95.37,
+        "residual": 2.13
+      },
+      {
+        "district": "Baloda Bazar",
+        "state": "Chhattisgarh",
+        "actual": 78.1,
+        "predicted": 86.76,
+        "residual": -8.66
+      },
+      {
+        "district": "Sivasagar",
+        "state": "Assam",
+        "actual": 95.3,
+        "predicted": 93.05,
+        "residual": 2.25
+      },
+      {
+        "district": "Thiruvallur",
+        "state": "Tamil Nadu",
+        "actual": 100.0,
+        "predicted": 95.83,
+        "residual": 4.17
+      },
+      {
+        "district": "Salem",
+        "state": "Tamil Nadu",
+        "actual": 100.0,
+        "predicted": 98.4,
+        "residual": 1.6
+      },
+      {
+        "district": "Kota",
+        "state": "Rajasthan",
+        "actual": 97.9,
+        "predicted": 95.96,
+        "residual": 1.94
+      },
+      {
+        "district": "Bundi",
+        "state": "Rajasthan",
+        "actual": 95.3,
+        "predicted": 93.84,
+        "residual": 1.46
+      },
+      {
+        "district": "Buldana",
+        "state": "Maharashtra",
+        "actual": 93.9,
+        "predicted": 95.99,
+        "residual": -2.09
+      },
+      {
+        "district": "Shajapur",
+        "state": "Madhya Pradesh",
+        "actual": 98.1,
+        "predicted": 92.27,
+        "residual": 5.83
+      },
+      {
+        "district": "Chamba",
+        "state": "Himachal Pradesh",
+        "actual": 72.0,
+        "predicted": 91.04,
+        "residual": -19.04
+      },
+      {
+        "district": "Kushinagar",
+        "state": "Uttar Pradesh",
+        "actual": 89.4,
+        "predicted": 84.39,
+        "residual": 5.01
+      },
+      {
+        "district": "Kaithal",
+        "state": "Haryana",
+        "actual": 98.2,
+        "predicted": 95.46,
+        "residual": 2.74
+      },
+      {
+        "district": "Bhiwani",
+        "state": "Haryana",
+        "actual": 97.7,
+        "predicted": 90.02,
+        "residual": 7.68
+      },
+      {
+        "district": "Thanjavur",
+        "state": "Tamil Nadu",
+        "actual": 100.0,
+        "predicted": 98.15,
+        "residual": 1.85
+      },
+      {
+        "district": "Perambalur",
+        "state": "Tamil Nadu",
+        "actual": 100.0,
+        "predicted": 97.95,
+        "residual": 2.05
+      },
+      {
+        "district": "Nandurbar",
+        "state": "Maharashtra",
+        "actual": 76.3,
+        "predicted": 85.62,
+        "residual": -9.32
+      },
+      {
+        "district": "Sirsa",
+        "state": "Haryana",
+        "actual": 99.3,
+        "predicted": 94.01,
+        "residual": 5.29
+      },
+      {
+        "district": "Hoshangabad",
+        "state": "Madhya Pradesh",
+        "actual": 91.8,
+        "predicted": 83.69,
+        "residual": 8.11
+      },
+      {
+        "district": "Jalpaiguri",
+        "state": "West Bengal",
+        "actual": 95.8,
+        "predicted": 92.1,
+        "residual": 3.7
+      },
+      {
+        "district": "Simdega",
+        "state": "Jharkhand",
+        "actual": 75.7,
+        "predicted": 79.61,
+        "residual": -3.91
+      },
+      {
+        "district": "Karur",
+        "state": "Tamil Nadu",
+        "actual": 100.0,
+        "predicted": 96.93,
+        "residual": 3.07
+      },
+      {
+        "district": "Sri Potti Sriramulu Nellore",
+        "state": "Andhra Pradesh",
+        "actual": 97.0,
+        "predicted": 96.21,
+        "residual": 0.79
+      }
+    ],
+    "K-Nearest Neighbors": [
+      {
+        "district": "Kapurthala",
+        "state": "Punjab",
+        "actual": 95.0,
+        "predicted": 95.55,
+        "residual": -0.55
+      },
+      {
+        "district": "Jehanabad",
+        "state": "Bihar",
+        "actual": 89.1,
+        "predicted": 79.09,
+        "residual": 10.01
+      },
+      {
+        "district": "Darbhanga",
+        "state": "Bihar",
+        "actual": 69.9,
+        "predicted": 78.07,
+        "residual": -8.17
+      },
+      {
+        "district": "Badgam",
+        "state": "Jammu & Kashmir",
+        "actual": 96.5,
+        "predicted": 92.74,
+        "residual": 3.76
+      },
+      {
+        "district": "Indore",
+        "state": "Madhya Pradesh",
+        "actual": 96.5,
+        "predicted": 98.71,
+        "residual": -2.21
+      },
+      {
+        "district": "Mandsaur",
+        "state": "Madhya Pradesh",
+        "actual": 99.4,
+        "predicted": 91.59,
+        "residual": 7.81
+      },
+      {
+        "district": "Ranchi",
+        "state": "Jharkhand",
+        "actual": 87.3,
+        "predicted": 84.77,
+        "residual": 2.53
+      },
+      {
+        "district": "Khargone (West Nimar)",
+        "state": "Madhya Pradesh",
+        "actual": 92.8,
+        "predicted": 89.86,
+        "residual": 2.94
+      },
+      {
+        "district": "Ribhoi",
+        "state": "Meghalaya",
+        "actual": 56.9,
+        "predicted": 56.61,
+        "residual": 0.29
+      },
+      {
+        "district": "Jashpur",
+        "state": "Chhattisgarh",
+        "actual": 85.6,
+        "predicted": 86.26,
+        "residual": -0.66
+      },
+      {
+        "district": "Mahisagar",
+        "state": "Gujarat",
+        "actual": 93.0,
+        "predicted": 86.77,
+        "residual": 6.23
+      },
+      {
+        "district": "Rajkot",
+        "state": "Gujarat",
+        "actual": 99.3,
+        "predicted": 97.75,
+        "residual": 1.55
+      },
+      {
+        "district": "Dimapur",
+        "state": "Nagaland",
+        "actual": 73.7,
+        "predicted": 89.36,
+        "residual": -15.66
+      },
+      {
+        "district": "Tumkur",
+        "state": "Karnataka",
+        "actual": 100.0,
+        "predicted": 99.5,
+        "residual": 0.5
+      },
+      {
+        "district": "Dhanbad",
+        "state": "Jharkhand",
+        "actual": 78.8,
+        "predicted": 84.25,
+        "residual": -5.45
+      },
+      {
+        "district": "Gariyaband",
+        "state": "Chhattisgarh",
+        "actual": 87.6,
+        "predicted": 88.93,
+        "residual": -1.33
+      },
+      {
+        "district": "Surguja",
+        "state": "Chhattisgarh",
+        "actual": 85.3,
+        "predicted": 84.46,
+        "residual": 0.84
+      },
+      {
+        "district": "Peddapalli",
+        "state": "Telangana",
+        "actual": 96.5,
+        "predicted": 95.96,
+        "residual": 0.54
+      },
+      {
+        "district": "Kinnaur",
+        "state": "Himachal Pradesh",
+        "actual": 82.7,
+        "predicted": 96.22,
+        "residual": -13.52
+      },
+      {
+        "district": "Sukma",
+        "state": "Chhattisgarh",
+        "actual": 81.2,
+        "predicted": 85.11,
+        "residual": -3.91
+      },
+      {
+        "district": "Kamrup Metropolitan",
+        "state": "Assam",
+        "actual": 89.1,
+        "predicted": 94.18,
+        "residual": -5.08
+      },
+      {
+        "district": "Varanasi",
+        "state": "Uttar Pradesh",
+        "actual": 95.2,
+        "predicted": 92.32,
+        "residual": 2.88
+      },
+      {
+        "district": "Baghpat",
+        "state": "Uttar Pradesh",
+        "actual": 80.9,
+        "predicted": 83.49,
+        "residual": -2.59
+      },
+      {
+        "district": "Chandrapur",
+        "state": "Maharashtra",
+        "actual": 99.6,
+        "predicted": 96.89,
+        "residual": 2.71
+      },
+      {
+        "district": "Rohtas",
+        "state": "Bihar",
+        "actual": 89.1,
+        "predicted": 84.45,
+        "residual": 4.65
+      },
+      {
+        "district": "Udhampur",
+        "state": "Jammu & Kashmir",
+        "actual": 87.2,
+        "predicted": 91.94,
+        "residual": -4.74
+      },
+      {
+        "district": "Kohima",
+        "state": "Nagaland",
+        "actual": 66.9,
+        "predicted": 83.76,
+        "residual": -16.86
+      },
+      {
+        "district": "Gaya",
+        "state": "Bihar",
+        "actual": 76.6,
+        "predicted": 78.79,
+        "residual": -2.19
+      },
+      {
+        "district": "Belgaum",
+        "state": "Karnataka",
+        "actual": 97.5,
+        "predicted": 95.59,
+        "residual": 1.91
+      },
+      {
+        "district": "Baloda Bazar",
+        "state": "Chhattisgarh",
+        "actual": 78.1,
+        "predicted": 83.52,
+        "residual": -5.42
+      },
+      {
+        "district": "Sivasagar",
+        "state": "Assam",
+        "actual": 95.3,
+        "predicted": 92.06,
+        "residual": 3.24
+      },
+      {
+        "district": "Thiruvallur",
+        "state": "Tamil Nadu",
+        "actual": 100.0,
+        "predicted": 99.58,
+        "residual": 0.42
+      },
+      {
+        "district": "Salem",
+        "state": "Tamil Nadu",
+        "actual": 100.0,
+        "predicted": 98.58,
+        "residual": 1.42
+      },
+      {
+        "district": "Kota",
+        "state": "Rajasthan",
+        "actual": 97.9,
+        "predicted": 93.36,
+        "residual": 4.54
+      },
+      {
+        "district": "Bundi",
+        "state": "Rajasthan",
+        "actual": 95.3,
+        "predicted": 97.06,
+        "residual": -1.76
+      },
+      {
+        "district": "Buldana",
+        "state": "Maharashtra",
+        "actual": 93.9,
+        "predicted": 94.83,
+        "residual": -0.93
+      },
+      {
+        "district": "Shajapur",
+        "state": "Madhya Pradesh",
+        "actual": 98.1,
+        "predicted": 87.81,
+        "residual": 10.29
+      },
+      {
+        "district": "Chamba",
+        "state": "Himachal Pradesh",
+        "actual": 72.0,
+        "predicted": 94.04,
+        "residual": -22.04
+      },
+      {
+        "district": "Kushinagar",
+        "state": "Uttar Pradesh",
+        "actual": 89.4,
+        "predicted": 91.53,
+        "residual": -2.13
+      },
+      {
+        "district": "Kaithal",
+        "state": "Haryana",
+        "actual": 98.2,
+        "predicted": 97.28,
+        "residual": 0.92
+      },
+      {
+        "district": "Bhiwani",
+        "state": "Haryana",
+        "actual": 97.7,
+        "predicted": 98.6,
+        "residual": -0.9
+      },
+      {
+        "district": "Thanjavur",
+        "state": "Tamil Nadu",
+        "actual": 100.0,
+        "predicted": 99.04,
+        "residual": 0.96
+      },
+      {
+        "district": "Perambalur",
+        "state": "Tamil Nadu",
+        "actual": 100.0,
+        "predicted": 98.8,
+        "residual": 1.2
+      },
+      {
+        "district": "Nandurbar",
+        "state": "Maharashtra",
+        "actual": 76.3,
+        "predicted": 93.12,
+        "residual": -16.82
+      },
+      {
+        "district": "Sirsa",
+        "state": "Haryana",
+        "actual": 99.3,
+        "predicted": 95.03,
+        "residual": 4.27
+      },
+      {
+        "district": "Hoshangabad",
+        "state": "Madhya Pradesh",
+        "actual": 91.8,
+        "predicted": 86.6,
+        "residual": 5.2
+      },
+      {
+        "district": "Jalpaiguri",
+        "state": "West Bengal",
+        "actual": 95.8,
+        "predicted": 94.52,
+        "residual": 1.28
+      },
+      {
+        "district": "Simdega",
+        "state": "Jharkhand",
+        "actual": 75.7,
+        "predicted": 68.73,
+        "residual": 6.97
+      },
+      {
+        "district": "Karur",
+        "state": "Tamil Nadu",
+        "actual": 100.0,
+        "predicted": 99.1,
+        "residual": 0.9
+      },
+      {
+        "district": "Sri Potti Sriramulu Nellore",
+        "state": "Andhra Pradesh",
+        "actual": 97.0,
+        "predicted": 96.27,
+        "residual": 0.73
+      }
+    ],
+    "Gradient Boosting": [
+      {
+        "district": "Kapurthala",
+        "state": "Punjab",
+        "actual": 95.0,
+        "predicted": 94.1,
+        "residual": 0.9
+      },
+      {
+        "district": "Jehanabad",
+        "state": "Bihar",
+        "actual": 89.1,
+        "predicted": 76.12,
+        "residual": 12.98
+      },
+      {
+        "district": "Darbhanga",
+        "state": "Bihar",
+        "actual": 69.9,
+        "predicted": 78.19,
+        "residual": -8.29
+      },
+      {
+        "district": "Badgam",
+        "state": "Jammu & Kashmir",
+        "actual": 96.5,
+        "predicted": 96.12,
+        "residual": 0.38
+      },
+      {
+        "district": "Indore",
+        "state": "Madhya Pradesh",
+        "actual": 96.5,
+        "predicted": 96.62,
+        "residual": -0.12
+      },
+      {
+        "district": "Mandsaur",
+        "state": "Madhya Pradesh",
+        "actual": 99.4,
+        "predicted": 90.47,
+        "residual": 8.93
+      },
+      {
+        "district": "Ranchi",
+        "state": "Jharkhand",
+        "actual": 87.3,
+        "predicted": 82.95,
+        "residual": 4.35
+      },
+      {
+        "district": "Khargone (West Nimar)",
+        "state": "Madhya Pradesh",
+        "actual": 92.8,
+        "predicted": 91.72,
+        "residual": 1.08
+      },
+      {
+        "district": "Ribhoi",
+        "state": "Meghalaya",
+        "actual": 56.9,
+        "predicted": 74.23,
+        "residual": -17.33
+      },
+      {
+        "district": "Jashpur",
+        "state": "Chhattisgarh",
+        "actual": 85.6,
+        "predicted": 88.42,
+        "residual": -2.82
+      },
+      {
+        "district": "Mahisagar",
+        "state": "Gujarat",
+        "actual": 93.0,
+        "predicted": 90.25,
+        "residual": 2.75
+      },
+      {
+        "district": "Rajkot",
+        "state": "Gujarat",
+        "actual": 99.3,
+        "predicted": 97.62,
+        "residual": 1.68
+      },
+      {
+        "district": "Dimapur",
+        "state": "Nagaland",
+        "actual": 73.7,
+        "predicted": 79.74,
+        "residual": -6.04
+      },
+      {
+        "district": "Tumkur",
+        "state": "Karnataka",
+        "actual": 100.0,
+        "predicted": 99.05,
+        "residual": 0.95
+      },
+      {
+        "district": "Dhanbad",
+        "state": "Jharkhand",
+        "actual": 78.8,
+        "predicted": 84.93,
+        "residual": -6.13
+      },
+      {
+        "district": "Gariyaband",
+        "state": "Chhattisgarh",
+        "actual": 87.6,
+        "predicted": 84.8,
+        "residual": 2.8
+      },
+      {
+        "district": "Surguja",
+        "state": "Chhattisgarh",
+        "actual": 85.3,
+        "predicted": 87.97,
+        "residual": -2.67
+      },
+      {
+        "district": "Peddapalli",
+        "state": "Telangana",
+        "actual": 96.5,
+        "predicted": 93.86,
+        "residual": 2.64
+      },
+      {
+        "district": "Kinnaur",
+        "state": "Himachal Pradesh",
+        "actual": 82.7,
+        "predicted": 97.84,
+        "residual": -15.14
+      },
+      {
+        "district": "Sukma",
+        "state": "Chhattisgarh",
+        "actual": 81.2,
+        "predicted": 88.7,
+        "residual": -7.5
+      },
+      {
+        "district": "Kamrup Metropolitan",
+        "state": "Assam",
+        "actual": 89.1,
+        "predicted": 95.47,
+        "residual": -6.37
+      },
+      {
+        "district": "Varanasi",
+        "state": "Uttar Pradesh",
+        "actual": 95.2,
+        "predicted": 93.21,
+        "residual": 1.99
+      },
+      {
+        "district": "Baghpat",
+        "state": "Uttar Pradesh",
+        "actual": 80.9,
+        "predicted": 78.64,
+        "residual": 2.26
+      },
+      {
+        "district": "Chandrapur",
+        "state": "Maharashtra",
+        "actual": 99.6,
+        "predicted": 98.56,
+        "residual": 1.04
+      },
+      {
+        "district": "Rohtas",
+        "state": "Bihar",
+        "actual": 89.1,
+        "predicted": 84.92,
+        "residual": 4.18
+      },
+      {
+        "district": "Udhampur",
+        "state": "Jammu & Kashmir",
+        "actual": 87.2,
+        "predicted": 88.19,
+        "residual": -0.99
+      },
+      {
+        "district": "Kohima",
+        "state": "Nagaland",
+        "actual": 66.9,
+        "predicted": 65.25,
+        "residual": 1.65
+      },
+      {
+        "district": "Gaya",
+        "state": "Bihar",
+        "actual": 76.6,
+        "predicted": 81.58,
+        "residual": -4.98
+      },
+      {
+        "district": "Belgaum",
+        "state": "Karnataka",
+        "actual": 97.5,
+        "predicted": 93.05,
+        "residual": 4.45
+      },
+      {
+        "district": "Baloda Bazar",
+        "state": "Chhattisgarh",
+        "actual": 78.1,
+        "predicted": 86.07,
+        "residual": -7.97
+      },
+      {
+        "district": "Sivasagar",
+        "state": "Assam",
+        "actual": 95.3,
+        "predicted": 92.55,
+        "residual": 2.75
+      },
+      {
+        "district": "Thiruvallur",
+        "state": "Tamil Nadu",
+        "actual": 100.0,
+        "predicted": 97.22,
+        "residual": 2.78
+      },
+      {
+        "district": "Salem",
+        "state": "Tamil Nadu",
+        "actual": 100.0,
+        "predicted": 99.22,
+        "residual": 0.78
+      },
+      {
+        "district": "Kota",
+        "state": "Rajasthan",
+        "actual": 97.9,
+        "predicted": 97.95,
+        "residual": -0.05
+      },
+      {
+        "district": "Bundi",
+        "state": "Rajasthan",
+        "actual": 95.3,
+        "predicted": 95.62,
+        "residual": -0.32
+      },
+      {
+        "district": "Buldana",
+        "state": "Maharashtra",
+        "actual": 93.9,
+        "predicted": 96.19,
+        "residual": -2.29
+      },
+      {
+        "district": "Shajapur",
+        "state": "Madhya Pradesh",
+        "actual": 98.1,
+        "predicted": 93.02,
+        "residual": 5.08
+      },
+      {
+        "district": "Chamba",
+        "state": "Himachal Pradesh",
+        "actual": 72.0,
+        "predicted": 92.03,
+        "residual": -20.03
+      },
+      {
+        "district": "Kushinagar",
+        "state": "Uttar Pradesh",
+        "actual": 89.4,
+        "predicted": 80.71,
+        "residual": 8.69
+      },
+      {
+        "district": "Kaithal",
+        "state": "Haryana",
+        "actual": 98.2,
+        "predicted": 95.19,
+        "residual": 3.01
+      },
+      {
+        "district": "Bhiwani",
+        "state": "Haryana",
+        "actual": 97.7,
+        "predicted": 95.71,
+        "residual": 1.99
+      },
+      {
+        "district": "Thanjavur",
+        "state": "Tamil Nadu",
+        "actual": 100.0,
+        "predicted": 98.46,
+        "residual": 1.54
+      },
+      {
+        "district": "Perambalur",
+        "state": "Tamil Nadu",
+        "actual": 100.0,
+        "predicted": 98.49,
+        "residual": 1.51
+      },
+      {
+        "district": "Nandurbar",
+        "state": "Maharashtra",
+        "actual": 76.3,
+        "predicted": 87.87,
+        "residual": -11.57
+      },
+      {
+        "district": "Sirsa",
+        "state": "Haryana",
+        "actual": 99.3,
+        "predicted": 96.92,
+        "residual": 2.38
+      },
+      {
+        "district": "Hoshangabad",
+        "state": "Madhya Pradesh",
+        "actual": 91.8,
+        "predicted": 83.8,
+        "residual": 8.0
+      },
+      {
+        "district": "Jalpaiguri",
+        "state": "West Bengal",
+        "actual": 95.8,
+        "predicted": 93.17,
+        "residual": 2.63
+      },
+      {
+        "district": "Simdega",
+        "state": "Jharkhand",
+        "actual": 75.7,
+        "predicted": 74.31,
+        "residual": 1.39
+      },
+      {
+        "district": "Karur",
+        "state": "Tamil Nadu",
+        "actual": 100.0,
+        "predicted": 98.77,
+        "residual": 1.23
+      },
+      {
+        "district": "Sri Potti Sriramulu Nellore",
+        "state": "Andhra Pradesh",
+        "actual": 97.0,
+        "predicted": 94.24,
+        "residual": 2.76
+      }
+    ]
+  }
+}

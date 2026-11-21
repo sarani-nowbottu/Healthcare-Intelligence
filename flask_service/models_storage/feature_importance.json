@@ -1,0 +1,122 @@
+[
+  {
+    "feature_key": "birth_registration",
+    "feature_name": "Birth Registration with Civil Authority (%)",
+    "category": "Institutional Governance",
+    "gradient_boosting_importance": 0.2732,
+    "random_forest_importance": 0.2874,
+    "importance_score": 0.2803
+  },
+  {
+    "feature_key": "anc_4_visits",
+    "feature_name": "At Least 4 ANC Visits (%)",
+    "category": "Maternal Healthcare",
+    "gradient_boosting_importance": 0.1244,
+    "random_forest_importance": 0.109,
+    "importance_score": 0.1167
+  },
+  {
+    "feature_key": "clean_fuel",
+    "feature_name": "Clean Fuel Usage for Cooking (%)",
+    "category": "Infrastructure & Living Standard",
+    "gradient_boosting_importance": 0.0844,
+    "random_forest_importance": 0.1051,
+    "importance_score": 0.0948
+  },
+  {
+    "feature_key": "women_schooling_10yrs",
+    "feature_name": "Women with 10+ Years Schooling (%)",
+    "category": "Socioeconomic Profile",
+    "gradient_boosting_importance": 0.0886,
+    "random_forest_importance": 0.0662,
+    "importance_score": 0.0774
+  },
+  {
+    "feature_key": "women_literate",
+    "feature_name": "Women Literacy Rate (%)",
+    "category": "Socioeconomic Profile",
+    "gradient_boosting_importance": 0.0635,
+    "random_forest_importance": 0.0737,
+    "importance_score": 0.0686
+  },
+  {
+    "feature_key": "sanitation",
+    "feature_name": "Improved Sanitation Facility Access (%)",
+    "category": "Infrastructure & Living Standard",
+    "gradient_boosting_importance": 0.0599,
+    "random_forest_importance": 0.0614,
+    "importance_score": 0.0606
+  },
+  {
+    "feature_key": "anc_first_trimester",
+    "feature_name": "Antenatal Checkup in 1st Trimester (%)",
+    "category": "Maternal Healthcare",
+    "gradient_boosting_importance": 0.0601,
+    "random_forest_importance": 0.0527,
+    "importance_score": 0.0564
+  },
+  {
+    "feature_key": "drinking_water",
+    "feature_name": "Improved Drinking Water Source (%)",
+    "category": "Infrastructure & Living Standard",
+    "gradient_boosting_importance": 0.0587,
+    "random_forest_importance": 0.0444,
+    "importance_score": 0.0516
+  },
+  {
+    "feature_key": "mcp_card",
+    "feature_name": "Mother & Child Protection Card Received (%)",
+    "category": "Maternal Healthcare",
+    "gradient_boosting_importance": 0.0403,
+    "random_forest_importance": 0.047,
+    "importance_score": 0.0436
+  },
+  {
+    "feature_key": "electricity",
+    "feature_name": "Household Electricity Access (%)",
+    "category": "Infrastructure & Living Standard",
+    "gradient_boosting_importance": 0.0369,
+    "random_forest_importance": 0.0425,
+    "importance_score": 0.0397
+  },
+  {
+    "feature_key": "tetanus_protected",
+    "feature_name": "Neonatal Tetanus Protection (%)",
+    "category": "Maternal Healthcare",
+    "gradient_boosting_importance": 0.0387,
+    "random_forest_importance": 0.0294,
+    "importance_score": 0.034
+  },
+  {
+    "feature_key": "health_insurance",
+    "feature_name": "Health Insurance / Financing Coverage (%)",
+    "category": "Financial Protection",
+    "gradient_boosting_importance": 0.035,
+    "random_forest_importance": 0.0292,
+    "importance_score": 0.0321
+  },
+  {
+    "feature_key": "ifa_100_days",
+    "feature_name": "IFA Consumption for 100+ Days (%)",
+    "category": "Maternal Healthcare",
+    "gradient_boosting_importance": 0.0103,
+    "random_forest_importance": 0.025,
+    "importance_score": 0.0176
+  },
+  {
+    "feature_key": "immunization_full",
+    "feature_name": "Full Child Immunization (12-23 months) (%)",
+    "category": "Child Health",
+    "gradient_boosting_importance": 0.0115,
+    "random_forest_importance": 0.0162,
+    "importance_score": 0.0138
+  },
+  {
+    "feature_key": "early_marriage",
+    "feature_name": "Underage Marriage (Age 20-24 married <18) (%)",
+    "category": "Socioeconomic Profile",
+    "gradient_boosting_importance": 0.0145,
+    "random_forest_importance": 0.0108,
+    "importance_score": 0.0126
+  }
+]
