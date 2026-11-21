@@ -6,6 +6,7 @@ Runs on Port 5001
 
 import os
 import sys
+import shutil
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 from werkzeug.utils import secure_filename
@@ -24,8 +25,17 @@ from explainer import integrated_explainer
 app = Flask(__name__)
 CORS(app)
 
-POLICIES_DIR = os.path.join(current_dir, 'policies_storage')
+DEFAULT_POLICIES_DIR = os.path.join(current_dir, 'policies_storage')
+POLICIES_DIR = os.environ.get('POLICIES_DIR', DEFAULT_POLICIES_DIR)
 os.makedirs(POLICIES_DIR, exist_ok=True)
+
+# Seed a mounted persistent directory with the bundled policy PDFs on first boot.
+if os.path.abspath(POLICIES_DIR) != os.path.abspath(DEFAULT_POLICIES_DIR):
+    for filename in os.listdir(DEFAULT_POLICIES_DIR):
+        source = os.path.join(DEFAULT_POLICIES_DIR, filename)
+        destination = os.path.join(POLICIES_DIR, filename)
+        if filename.lower().endswith('.pdf') and os.path.isfile(source) and not os.path.exists(destination):
+            shutil.copy2(source, destination)
 
 # Ensure vector index is built
 vector_store.build_index(POLICIES_DIR)
@@ -258,6 +268,7 @@ def upload_policy():
         return jsonify({
             'success': True,
             'message': f"Document '{fname}' uploaded and indexed successfully.",
+            'filename': fname,
             'total_policies': len(vector_store.documents),
             'total_chunks': len(vector_store.chunks)
         }), 201
@@ -292,6 +303,6 @@ def generate_recommendations():
         return jsonify({'error': str(e)}), 500
 
 if __name__ == '__main__':
-    port = int(os.environ.get('FLASK_PORT', 5001))
+    port = int(os.environ.get('PORT', os.environ.get('FLASK_PORT', 5001)))
     print(f"Starting Healthcare AI/ML Service on port {port}...")
     app.run(host='0.0.0.0', port=port, debug=False)

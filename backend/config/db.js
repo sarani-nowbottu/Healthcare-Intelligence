@@ -1,67 +1,99 @@
 /**
- * SQLite Database Connection & Schema Migrations
- * AI-Powered Healthcare Policy Intelligence & Prediction System
+ * Database adapter: SQLite for local development, PostgreSQL when DATABASE_URL
+ * is provided by the deployment environment.
  */
 
-const sqlite3 = require('sqlite3').verbose();
-const path = require('path');
 const bcrypt = require('bcryptjs');
 const config = require('./config');
 
-const dbPath = path.resolve(__dirname, '..', config.DB_PATH);
-const db = new sqlite3.Database(dbPath, (err) => {
-  if (err) {
-    console.error('Failed to connect to SQLite database:', err.message);
-  } else {
-    console.log(`Connected to persistent SQLite database at: ${dbPath}`);
-  }
-});
+const isPostgres = Boolean(config.DATABASE_URL);
+let db;
 
-// Run queries as promises
-db.runAsync = function (sql, params = []) {
-  return new Promise((resolve, reject) => {
-    db.run(sql, params, function (err) {
-      if (err) reject(err);
-      else resolve(this);
-    });
+if (isPostgres) {
+  const { Pool } = require('pg');
+  const pool = new Pool({
+    connectionString: config.DATABASE_URL,
+    ssl: config.DATABASE_SSL ? { rejectUnauthorized: false } : undefined,
+    max: 10
   });
-};
+  pool.on('error', (err) => console.error('Unexpected PostgreSQL pool error:', err));
 
-db.getAsync = function (sql, params = []) {
-  return new Promise((resolve, reject) => {
-    db.get(sql, params, (err, row) => {
-      if (err) reject(err);
-      else resolve(row);
-    });
-  });
-};
+  const postgresSql = (sql) => {
+    let parameterIndex = 0;
+    return sql.replace(/\?/g, () => `$${++parameterIndex}`);
+  };
 
-db.allAsync = function (sql, params = []) {
-  return new Promise((resolve, reject) => {
-    db.all(sql, params, (err, rows) => {
-      if (err) reject(err);
-      else resolve(rows);
-    });
+  db = {
+    runAsync: async (sql, params = []) => {
+      let query = postgresSql(sql);
+      if (/^\s*INSERT\s+INTO\b/i.test(query) && !/\bRETURNING\b/i.test(query)) {
+        query += ' RETURNING id';
+      }
+      const result = await pool.query(query, params);
+      return { lastID: result.rows[0]?.id, changes: result.rowCount };
+    },
+    getAsync: async (sql, params = []) => {
+      const result = await pool.query(postgresSql(sql), params);
+      return result.rows[0];
+    },
+    allAsync: async (sql, params = []) => {
+      const result = await pool.query(postgresSql(sql), params);
+      return result.rows;
+    }
+  };
+} else {
+  const sqlite3 = require('sqlite3').verbose();
+  const path = require('path');
+  const dbPath = path.resolve(__dirname, '..', config.DB_PATH);
+  const sqlite = new sqlite3.Database(dbPath, (err) => {
+    if (err) console.error('Failed to connect to SQLite database:', err.message);
+    else console.log(`Connected to local SQLite database at: ${dbPath}`);
   });
-};
+
+  db = sqlite;
+  db.runAsync = function (sql, params = []) {
+    return new Promise((resolve, reject) => {
+      sqlite.run(sql, params, function (err) {
+        if (err) reject(err);
+        else resolve(this);
+      });
+    });
+  };
+  db.getAsync = function (sql, params = []) {
+    return new Promise((resolve, reject) => {
+      sqlite.get(sql, params, (err, row) => {
+        if (err) reject(err);
+        else resolve(row);
+      });
+    });
+  };
+  db.allAsync = function (sql, params = []) {
+    return new Promise((resolve, reject) => {
+      sqlite.all(sql, params, (err, rows) => {
+        if (err) reject(err);
+        else resolve(rows);
+      });
+    });
+  };
+}
 
 async function initDatabase() {
-  // 1. Users Table
+  const idType = isPostgres ? 'SERIAL PRIMARY KEY' : 'INTEGER PRIMARY KEY AUTOINCREMENT';
+
   await db.runAsync(`
     CREATE TABLE IF NOT EXISTS users (
-      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      id ${idType},
       name TEXT NOT NULL,
       email TEXT UNIQUE NOT NULL,
       password_hash TEXT NOT NULL,
       role TEXT DEFAULT 'citizen',
-      created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+      created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     )
   `);
 
-  // 2. Policy Documents Table
   await db.runAsync(`
     CREATE TABLE IF NOT EXISTS policy_documents (
-      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      id ${idType},
       title TEXT NOT NULL,
       filename TEXT NOT NULL,
       original_name TEXT NOT NULL,
@@ -69,15 +101,14 @@ async function initDatabase() {
       pages_count INTEGER DEFAULT 1,
       chunks_count INTEGER DEFAULT 0,
       uploaded_by INTEGER,
-      created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+      created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
       FOREIGN KEY (uploaded_by) REFERENCES users (id)
     )
   `);
 
-  // 3. Predictions History Table
   await db.runAsync(`
     CREATE TABLE IF NOT EXISTS predictions (
-      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      id ${idType},
       user_id INTEGER,
       district_name TEXT,
       state_name TEXT,
@@ -88,26 +119,24 @@ async function initDatabase() {
       upper_bound REAL,
       input_features_json TEXT,
       contributions_json TEXT,
-      created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+      created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
       FOREIGN KEY (user_id) REFERENCES users (id)
     )
   `);
 
-  // 4. Chat Messages History Table
   await db.runAsync(`
     CREATE TABLE IF NOT EXISTS chat_messages (
-      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      id ${idType},
       user_id INTEGER,
       session_id TEXT NOT NULL,
       role TEXT NOT NULL,
       message TEXT NOT NULL,
       citations_json TEXT,
-      created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+      created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
       FOREIGN KEY (user_id) REFERENCES users (id)
     )
   `);
 
-  // Seed default demo user for easy professor/reviewer access
   const existingUser = await db.getAsync('SELECT id FROM users WHERE email = ?', ['demo@healthcare.org']);
   if (!existingUser) {
     const salt = await bcrypt.genSalt(10);
@@ -118,9 +147,9 @@ async function initDatabase() {
     `, ['Healthcare Administrator (Demo)', 'demo@healthcare.org', hash, 'admin']);
     console.log('Seeded demo administrator user: demo@healthcare.org / Demo@12345');
   }
+
+  console.log(`Database initialized (${isPostgres ? 'PostgreSQL' : 'SQLite'}).`);
 }
 
-// Keep the initialization promise rejectable so the server can avoid accepting
-// requests until the schema is ready and can fail clearly if SQLite setup fails.
 db.initPromise = initDatabase();
 module.exports = db;

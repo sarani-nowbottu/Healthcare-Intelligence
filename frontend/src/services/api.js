@@ -3,7 +3,8 @@
  * AI-Powered Healthcare Policy Intelligence & Prediction System
  */
 
-const BASE_URL = '/api';
+const configuredApiUrl = import.meta.env.VITE_API_BASE_URL?.replace(/\/+$/, '');
+const BASE_URL = configuredApiUrl ? `${configuredApiUrl}/api` : '/api';
 
 function getAuthHeaders() {
   const token = localStorage.getItem('hc_token');

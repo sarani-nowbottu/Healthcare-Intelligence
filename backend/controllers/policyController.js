@@ -6,6 +6,7 @@
 const path = require('path');
 const fs = require('fs');
 const flaskService = require('../services/flaskService');
+const config = require('../config/config');
 const db = require('../config/db');
 
 exports.listPolicies = async (req, res, next) => {
@@ -36,13 +37,38 @@ exports.uploadPolicy = async (req, res, next) => {
       return res.status(400).json({ error: 'No file uploaded.' });
     }
 
-    const { originalname, filename, size, path: tempPath } = req.file;
-    const destDir = path.resolve(__dirname, '../../flask_service/policies_storage');
-    const finalDest = path.join(destDir, filename);
+    const { originalname, size, path: tempPath, mimetype } = req.file;
 
-    // Copy to Flask policy storage
-    fs.copyFileSync(tempPath, finalDest);
-    fs.unlinkSync(tempPath);
+    // Forward the upload to Flask. The services may run on separate hosts, so
+    // their local filesystems are not shared in production.
+    let flaskResponse;
+    try {
+      const formData = new FormData();
+      formData.append(
+        'file',
+        new Blob([fs.readFileSync(tempPath)], { type: mimetype || 'application/pdf' }),
+        originalname
+      );
+      flaskResponse = await fetch(`${config.FLASK_SERVICE_URL}/api/policies/upload`, {
+        method: 'POST',
+        body: formData
+      });
+    } finally {
+      if (fs.existsSync(tempPath)) fs.unlinkSync(tempPath);
+    }
+
+    const responseText = await flaskResponse.text();
+    let uploadResult;
+    try {
+      uploadResult = responseText ? JSON.parse(responseText) : {};
+    } catch {
+      throw new Error(`The policy service returned an unreadable response (HTTP ${flaskResponse.status}).`);
+    }
+    if (!flaskResponse.ok) {
+      throw new Error(uploadResult.error || `The policy service rejected the upload (HTTP ${flaskResponse.status}).`);
+    }
+
+    const filename = uploadResult.filename || originalname;
 
     // Record in SQLite
     const userId = req.user ? req.user.id : null;
@@ -54,12 +80,10 @@ exports.uploadPolicy = async (req, res, next) => {
     `, [title, filename, originalname, size, userId]);
 
     // Trigger re-indexing
-    const policiesList = await flaskService.listPolicies();
-
     return res.status(201).json({
-      message: `Policy '${originalname}' successfully uploaded and indexed.`,
-      filename,
-      policies: policiesList
+      ...uploadResult,
+      message: uploadResult.message || `Policy '${originalname}' successfully uploaded and indexed.`,
+      filename
     });
   } catch (err) {
     next(err);
