@@ -51,6 +51,9 @@ exports.uploadPolicy = async (req, res, next) => {
       );
       flaskResponse = await fetch(`${config.FLASK_SERVICE_URL}/api/policies/upload`, {
         method: 'POST',
+        headers: config.FLASK_SERVICE_TOKEN
+          ? { 'X-Service-Token': config.FLASK_SERVICE_TOKEN }
+          : {},
         body: formData
       });
     } finally {

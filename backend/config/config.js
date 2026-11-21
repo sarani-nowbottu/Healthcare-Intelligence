@@ -21,6 +21,7 @@ module.exports = {
   FLASK_SERVICE_URL: /^https?:\/\//i.test(flaskServiceAddress)
     ? flaskServiceAddress
     : `http://${flaskServiceAddress}`,
+  FLASK_SERVICE_TOKEN: process.env.FLASK_SERVICE_TOKEN || '',
   DATABASE_URL: process.env.DATABASE_URL || '',
   DATABASE_SSL: process.env.DATABASE_SSL === 'true',
   JWT_SECRET: jwtSecret,

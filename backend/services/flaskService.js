@@ -8,9 +8,10 @@ const config = require('../config/config');
 
 const client = axios.create({
   baseURL: config.FLASK_SERVICE_URL,
-  timeout: 30000,
+  timeout: 120000,
   headers: {
-    'Content-Type': 'application/json'
+    'Content-Type': 'application/json',
+    ...(config.FLASK_SERVICE_TOKEN ? { 'X-Service-Token': config.FLASK_SERVICE_TOKEN } : {})
   }
 });
 

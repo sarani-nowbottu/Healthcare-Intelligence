@@ -119,14 +119,13 @@ Open your browser at: **`http://localhost:5173`**
 
 ## ☁️ Render Deployment
 
-The repository includes a `render.yaml` Blueprint for the React static site, Express API, private Flask service, PostgreSQL database, and persistent storage for uploaded policy PDFs.
+The repository includes a `render.yaml` Blueprint for a React static site, Express API, Flask service, and PostgreSQL database, all on Render's free plans.
 
 1. Connect the GitHub repository to Render and create a new Blueprint from `render.yaml`.
-2. Review the service and database plans in Render before applying the Blueprint. The API, Flask service, database, and policy storage are configured with paid resources for persistent data and reliable service availability.
+2. Apply the Blueprint. Render wires the frontend API URL, Flask service URL, service token, PostgreSQL connection, and JWT secret automatically.
 3. Optionally add `GEMINI_API_KEY` to the Flask service environment to enable live Gemini answers; policy retrieval otherwise uses the local index.
-4. Apply the Blueprint and wait for all services to become healthy. Render wires the frontend API URL, private Flask URL, PostgreSQL connection, and generated JWT secret automatically.
 
-The local `backend/healthcare_system.db` is intentionally excluded from Git. Render initializes the PostgreSQL schema and demo account during backend startup.
+The local `backend/healthcare_system.db` is intentionally excluded from Git. Render initializes the PostgreSQL schema and demo account during backend startup. Free Render web services sleep after 15 minutes without traffic, the free PostgreSQL database expires after 30 days, and uploaded policy PDFs are lost when the Flask service restarts or redeploys. The free plans are suitable for a demo, not durable production use.
 
 ---
 

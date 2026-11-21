@@ -25,6 +25,14 @@ from explainer import integrated_explainer
 app = Flask(__name__)
 CORS(app)
 
+@app.before_request
+def require_service_token():
+    """Restrict public Flask API routes to the Express service when configured."""
+    expected_token = os.environ.get('FLASK_SERVICE_TOKEN')
+    if request.path.startswith('/api/') and expected_token:
+        if request.headers.get('X-Service-Token') != expected_token:
+            return jsonify({'error': 'This endpoint is available through the application API only.'}), 401
+
 DEFAULT_POLICIES_DIR = os.path.join(current_dir, 'policies_storage')
 POLICIES_DIR = os.environ.get('POLICIES_DIR', DEFAULT_POLICIES_DIR)
 os.makedirs(POLICIES_DIR, exist_ok=True)
