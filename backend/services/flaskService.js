@@ -15,8 +15,9 @@ const client = axios.create({
   }
 });
 
-// Render free instances can take about 50 seconds to wake after being idle.
-const RETRY_DELAYS_MS = [1000, 3000, 7000, 15000, 25000];
+// Flask's free Render instance may need longer than the platform's typical
+// wake-up window because it loads the ML models and indexes policy PDFs.
+const RETRY_DELAYS_MS = [1000, 3000, 7000, 12000, 18000, 25000, 30000, 30000];
 
 function isTransientUpstreamError(error) {
   const status = error.response?.status;
@@ -24,19 +25,23 @@ function isTransientUpstreamError(error) {
     ['ECONNABORTED', 'ECONNREFUSED', 'ECONNRESET', 'EAI_AGAIN', 'ETIMEDOUT'].includes(error.code);
 }
 
-async function getWithRetry(url) {
+async function requestWithRetry(requestConfig) {
   for (let attempt = 0; ; attempt += 1) {
     try {
-      return await client.get(url);
+      return await client.request(requestConfig);
     } catch (error) {
       const delay = RETRY_DELAYS_MS[attempt];
       if (delay === undefined || !isTransientUpstreamError(error)) throw error;
 
-      console.warn(`Flask service GET ${url} failed transiently (${error.response?.status || error.code}); retrying in ${delay}ms.`);
+      const method = (requestConfig.method || 'GET').toUpperCase();
+      console.warn(`Flask service ${method} ${requestConfig.url} failed transiently (${error.response?.status || error.code}); retrying in ${delay}ms.`);
       await new Promise(resolve => setTimeout(resolve, delay));
     }
   }
 }
+
+const getWithRetry = (url) => requestWithRetry({ method: 'GET', url });
+const postWithRetry = (url, data) => requestWithRetry({ method: 'POST', url, data });
 
 module.exports = {
   checkHealth: async () => {
@@ -56,7 +61,7 @@ module.exports = {
   },
 
   predictOutcome: async (payload) => {
-    const res = await client.post('/api/ml/predict', payload);
+    const res = await postWithRetry('/api/ml/predict', payload);
     return res.data;
   },
 
@@ -81,12 +86,12 @@ module.exports = {
   },
 
   queryRAG: async (query, chatHistory = []) => {
-    const res = await client.post('/api/rag/query', { query, chat_history: chatHistory });
+    const res = await postWithRetry('/api/rag/query', { query, chat_history: chatHistory });
     return res.data;
   },
 
   summarizePolicy: async (documentName) => {
-    const res = await client.post('/api/rag/summarize', { document_name: documentName });
+    const res = await postWithRetry('/api/rag/summarize', { document_name: documentName });
     return res.data;
   },
 
@@ -96,7 +101,7 @@ module.exports = {
   },
 
   generateRecommendations: async (payload) => {
-    const res = await client.post('/api/recommendations/generate', payload);
+    const res = await postWithRetry('/api/recommendations/generate', payload);
     return res.data;
   }
 };
