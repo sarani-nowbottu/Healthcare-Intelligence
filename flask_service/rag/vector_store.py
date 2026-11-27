@@ -83,11 +83,6 @@ class PolicyVectorStore:
 # Global vector store instance
 vector_store = PolicyVectorStore()
 
-# Auto-initialize default policies if storage exists
-_default_policy_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'policies_storage')
-if os.path.exists(_default_policy_dir):
-    vector_store.build_index(_default_policy_dir)
-
 if __name__ == '__main__':
     base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     p_dir = os.path.join(base_dir, 'policies_storage')

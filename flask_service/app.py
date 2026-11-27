@@ -45,8 +45,11 @@ if os.path.abspath(POLICIES_DIR) != os.path.abspath(DEFAULT_POLICIES_DIR):
         if filename.lower().endswith('.pdf') and os.path.isfile(source) and not os.path.exists(destination):
             shutil.copy2(source, destination)
 
-# Ensure vector index is built
-vector_store.build_index(POLICIES_DIR)
+# Build the policy index exactly once, after any persistent policy directory has
+# been seeded. Previously vector_store also indexed the bundled PDFs at import
+# time, so every cold start repeated all PDF extraction and TF-IDF work here.
+indexed_chunks = vector_store.build_index(POLICIES_DIR)
+print(f"Policy index ready: {len(vector_store.documents)} documents, {indexed_chunks} chunks.", flush=True)
 
 @app.route('/health', methods=['GET'])
 def health_check():
